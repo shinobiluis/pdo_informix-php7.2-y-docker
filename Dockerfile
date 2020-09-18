@@ -19,9 +19,8 @@ RUN apt-get -y upgrade
 RUN apt-get install -y sudo
 #Zona horaria
 RUN sudo ln -s /usr/share/zoneinfo/America/Mexico_City /etc/localtime
-# RUN sudo apt-get install -y vim 
+RUN sudo apt-get install -y vim 
 # # Instalamos y configuramos apache de forma inicial
-# #RUN apt-get install -y apache2 && apt-get clean
 RUN apt-get install -y apache2
 #Ejecutamos la configuracion inical del apache
 RUN sudo sh /tmp/confInitApache.sh
@@ -34,6 +33,7 @@ RUN apt-get install php7.2-dev -y
 RUN sudo sh /tmp/confPhpApache.sh
 COPY ./php/info.php /var/www/html/info.php
 COPY ./php/informix.php /var/www/html/informix.php
+COPY ./php/informix1.php /var/www/html/informix1.php
 
 # # Instlamos modulos de php
 # RUN sudo sh /tmp/installModulesPhp.sh
