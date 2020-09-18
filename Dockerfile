@@ -24,6 +24,8 @@ RUN sudo apt-get install -y vim
 RUN apt-get install -y apache2
 #Ejecutamos la configuracion inical del apache
 RUN sudo sh /tmp/confInitApache.sh
+RUN sudo a2enmod rewrite
+RUN service apache2 restart
 
 # Instalamos PHP7.2
 RUN sudo apt-get install php7.2 -y
@@ -31,12 +33,9 @@ RUN php -v
 RUN sudo apt-get install libapache2-mod-php7.2 -y
 RUN apt-get install php7.2-dev -y
 RUN sudo sh /tmp/confPhpApache.sh
-COPY ./php/info.php /var/www/html/info.php
-COPY ./php/informix.php /var/www/html/informix.php
-COPY ./php/informix1.php /var/www/html/informix1.php
 
-# # Instlamos modulos de php
-# RUN sudo sh /tmp/installModulesPhp.sh
+# Instlamos modulos de php
+RUN sudo sh /tmp/installModulesPhp.sh
 
 # Instalamos el CSDK de informix
 WORKDIR /tmp
