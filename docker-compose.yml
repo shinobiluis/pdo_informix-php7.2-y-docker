@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+  web:
+    container_name: phpPdoInformix
+    build: .
+       #volumes:
+      # Volumnes para el control del sitio
+      # El proyecto que trabajes debe estar en un servidor en la ruta /var/www/html/sitio
+      #- /var/www/html:/var/www/html
+    ports:
+         - "9001:80" # Puerto para sitio estatico
