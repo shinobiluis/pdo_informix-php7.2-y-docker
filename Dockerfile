@@ -1,7 +1,6 @@
 FROM ubuntu:18.04
 LABEL vendor=Geek_Luis
 LABEL version=1.0.0
-
 # Copiamos archivos temporales
 COPY ./scripts/confInitApache.sh /tmp
 COPY ./scripts/confPhpApache.sh /tmp
@@ -10,8 +9,6 @@ COPY ./scripts/installModulesPhp.sh /tmp
 COPY ./scripts/installCsdkIbm.sh /tmp
 COPY ./ibm/ibm.csdk.4.50.FC1.LNX.tar /tmp
 COPY ./pdo/PDO_INFORMIX-1.3.3.tgz /tmp
-
-
 #Instalaciones iniciales
 RUN apt-get -y update
 RUN apt-get -y upgrade
@@ -24,23 +21,21 @@ RUN sudo apt-get install -y vim
 RUN apt-get install -y apache2
 #Ejecutamos la configuracion inical del apache
 RUN sudo sh /tmp/confInitApache.sh
+# Activamos el mod_rewrite
+# https://medium.com/@greyes/habilitar-apache2-mod-rewrite-en-ubuntu-18-04-lts-2181f89f7d94
 RUN sudo a2enmod rewrite
 RUN service apache2 restart
-
 # Instalamos PHP7.2
 RUN sudo apt-get install php7.2 -y
 RUN php -v
 RUN sudo apt-get install libapache2-mod-php7.2 -y
 RUN apt-get install php7.2-dev -y
 RUN sudo sh /tmp/confPhpApache.sh
-
 # Instlamos modulos de php
 RUN sudo sh /tmp/installModulesPhp.sh
-
 # Instalamos el CSDK de informix
 WORKDIR /tmp
 RUN sh /tmp/installCsdkIbm.sh
-
 # Creamos el pdo_informix
 WORKDIR /tmp
 RUN sh /tmp/createPdoInformix.sh
@@ -60,9 +55,4 @@ RUN service apache2 restart
 # RUN sudo echo "/opt/IBM/informix/lib/cli" >> /etc/ld.so.conf
 # RUN sudo echo "/opt/IBM/informix/lib/esql" >> /etc/ld.so.conf
 # RUN sudo echo "/opt/IBM/informix/lib" >> /etc/ld.so.conf
-
-
-
-
-
 CMD apachectl -D FOREGROUND
