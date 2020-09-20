@@ -1,7 +1,7 @@
 <?php
     try{
-        $bd = new PDO("informix:host=10.1.52.4; service=3002;database=dsipe; server=aguila_sipe_tcp; protocol=onsoctcp;EnableScrollableCursors=1", "sao", "saodesa1");
-        $q = $bd->prepare("SELECT * FROM informix.directo where NUM_ISSSTE = 1234");
+        $bd = new PDO("informix:host=ip; service=puerto;database=base_de_datos; server=servidor; protocol=onsoctcp;EnableScrollableCursors=1", "usuario", "contraeña");
+        $q = $bd->prepare("SELECT * FROM informix.directo where NUM = 1234");
         if(!$q){
             die("Execute query error, because: ". print_r($bd->errorInfo(),true) );
         }else{
