@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 LABEL vendor=Geek_Luis
-LABEL version=1.0.0
+LABEL version=1.1.2
 # Copiamos archivos temporales
 COPY ./scripts/confInitApache.sh /tmp
 COPY ./scripts/confPhpApache.sh /tmp
@@ -28,8 +28,6 @@ RUN service apache2 restart
 # Instalamos PHP7.2
 RUN sudo apt-get install php7.2 -y
 RUN php -v
-RUN sudo apt-get install libapache2-mod-php7.2 -y
-RUN apt-get install php7.2-dev -y
 RUN sudo sh /tmp/confPhpApache.sh
 # Instlamos modulos de php
 RUN sudo sh /tmp/installModulesPhp.sh
@@ -48,11 +46,9 @@ RUN make
 RUN make install
 RUN echo 'extension=pdo_informix.so' | sudo tee -a /etc/php/7.2/apache2/conf.d/pdo_informix.ini
 RUN ln -s /etc/php/7.2/apache2/conf.d/pdo_informix.ini /etc/php/7.2/cli/conf.d/20-pdo_informix.ini
-# RUN ln -s /etc/php/7.2/apache2/conf.d/pdo_informix.ini /etc/php/7.2/fpm/conf.d/20-pdo_informix.ini
+
 RUN echo "export INFORMIXDIR=/opt/IBM/informix" >> /etc/apache2/envvars
 RUN echo "export LD_LIBRARY_PATH=/opt/IBM/informix/lib:/opt/IBM/informix/lib/esql:/opt/IBM/informix/lib/cli:/opt/IBM/informix/lib/c++:/opt/IBM/informix/lib/client:/opt/IBM/informix/lib/dmi" >> /etc/apache2/envvars
 RUN service apache2 restart
-# RUN sudo echo "/opt/IBM/informix/lib/cli" >> /etc/ld.so.conf
-# RUN sudo echo "/opt/IBM/informix/lib/esql" >> /etc/ld.so.conf
-# RUN sudo echo "/opt/IBM/informix/lib" >> /etc/ld.so.conf
+
 CMD apachectl -D FOREGROUND
