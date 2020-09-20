@@ -91,6 +91,9 @@ Hay 3 archivos:
 
 Por lógica tienes que cambiar los datos de conexión ya que en el repositorio solo dejare textos de ejemplo.
 
+## informix.php
+
+<p align="center"><img src="./README/12.png" width="350"></p>
 
 ## Que hay en el info.php
 
