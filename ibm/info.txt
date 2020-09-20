@@ -1,4 +1,3 @@
-El archivo que debe estar aquí se debe descargar de esta url:
+Lamentablemente el paquete `ibm.csdk.4.50.FC1.LNX.tar` pesa casi **200 MEGAS**, por este motivo si buscas en la carpet ibm solo veras un info.txt que te explica lo mismo que aquí 🤪.
+Usa el link de descarga del paquete de **ibm.csdk.4.50.FC1.LNX.tar**, en cuanto descargues coloca ese paquete en la carpeta **ibm**. Recuerda no cambiar el nombre o la extensión ya que la instalación se hace con ese mismo archivo.
 https://drive.google.com/file/d/1prZ_MxgspKj26oYEAi2eXfamgJVAGecX/view?usp=sharing
-Lamentablemente pesa casi 200 megas por lo que no se puede subir a github.
-Solo descarga y ponlo aquí. El nombre del archivo debe ser: ibm.csdk.4.50.FC1.LNX.tar
